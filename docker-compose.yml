@@ -1,0 +1,67 @@
+services:
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    container_name: clinica-app
+    ports:
+      - "3000:3000"
+    networks:
+      - clinica-network
+    volumes:
+        - .:/app
+        - /app/backend/node_modules
+        - ./.env:/app/.env
+        
+    #environment:
+    #  - MYSQL_HOST=db
+    #  - MYSQL_USER=root
+    #  - MYSQL_PASSWORD=root
+    #  - MYSQL_DATABASE=clinca-db
+    command: ["node", "server.js"]
+    
+
+  db:
+    image: mysql:8
+    restart: always
+    container_name: clinica-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clinica-db
+    ports:
+      - "3306:3306"
+    networks:
+      - clinica-network
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: clinica-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+    networks:
+      - clinica-network
+
+networks:
+  clinica-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
