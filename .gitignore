@@ -1,0 +1,60 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.npm/
+.npmrc
+.yarn/
+/backend/node_modules/ # Asegura que si tienes node_modules dentro de backend, también se ignoren
+
+# Docker
+*.env                   # Normalmente NO quieres comitear tu .env, ya que contiene credenciales.
+                        # Docker Compose usa .env en la misma carpeta que docker-compose.yml.
+                        # Puedes comitear un .env.example si quieres un ejemplo de variables.
+!/.env.example          # Si creas un archivo .env.example, esta línea lo incluye.
+
+# Archivos de logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+# Directorios de compilación/transpilación (si aplicara)
+dist/
+build/
+out/
+.next/ # Para Next.js
+.nuxt/ # Para Nuxt.js
+.svelte-kit/ # Para SvelteKit
+.turbo/ # Para Turborepo
+
+# Dependencias (si usas un monorepo o estructuras más complejas)
+# pnpm-lock.yaml
+# package-lock.json # Si solo usas yarn.lock
+# yarn.lock         # Si solo usas package-lock.json
+
+# Archivos del sistema operativo y editores
+.DS_Store               # macOS
+Thumbs.db               # Windows
+Desktop.ini             # Windows
+.vscode/                # VS Code settings and extensions (puedes excluir si no quieres compartir)
+.idea/                  # IntelliJ/WebStorm/PHPStorm
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de bases de datos
+*.sqlite
+*.sqlite3
+*.db
+/db-data/               # Si tu volumen de Docker no es gestionado y deja una carpeta local.
+                        # Tu docker-compose.yml ya usa un volumen nombrado (db-data),
+                        # que se gestiona por Docker y no suele crear una carpeta en el host.
+
+# Archivos de caché
+.cache/
+tmp/
+*.tmp
+*.bak
+*.swp
