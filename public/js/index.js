@@ -3,8 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const agregarEstudioBtn = document.getElementById('agregarEstudioBtn');
     const estudiosAgregadosList = document.querySelector('#estudiosAgregados ul');
-    const tempTipoEstudio = document.getElementById('tempTipoEstudio');
-    const tempEstudioRealizadoSelect = document.getElementById('tempEstudioRealizado');
+    const tipoEstudioSelected = document.getElementById('tipoEstudioSelect');
+    const estudioSelected = document.getElementById('estudioSelect');
     const estudiosDataInput = document.getElementById('estudiosData');
     const pacienteEstudioForm = document.getElementById('pacienteEstudioForm');
 
@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Evento al hacer clic en "Agregar Estudio"
     agregarEstudioBtn.addEventListener('click', () => {
-        const tipoEstudio = tempTipoEstudio.options[tempTipoEstudio.selectedIndex].text;
-        const estudioRealizado = tempEstudioRealizadoSelect.value;
-        const estudioRealizadoText = tempEstudioRealizadoSelect.options[tempEstudioRealizadoSelect.selectedIndex].text;
+        const tipoEstudio = tipoEstudioSelected.options[tipoEstudioSelected.selectedIndex].text;
+        const estudioRealizado = estudioSelected.value;
+        const estudioRealizadoText = estudioSelected.options[estudioSelected.selectedIndex].text;
 
         console.log('tipo estudio: ' + tipoEstudio)
         console.log('estudio: ' + estudioRealizado)
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Validar que se haya seleccionado un estudio
         if (!estudioRealizado) {
             alert('Por favor, seleccione un estudio a agregar.');
-            tempEstudioRealizadoSelect.focus();
+            estudioSelected.focus();
             return;
         }
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderEstudiosList(); // Actualiza la lista visible
 
         // Opcional: Limpiar los campos de entrada para el próximo estudio
-        tempEstudioRealizadoSelect.value = ''; // Limpia el select
+        estudioSelected.value = ''; // Limpia el select
     });
 
     // Evento para eliminar un estudio de la lista

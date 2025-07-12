@@ -60,25 +60,14 @@
                         
                         <div class="mb-3">
                             <label class="form-label d-block">Tipo de Estudio:</label>
-                            <select class="form-select" id="tempTipoEstudio" name="tempEstudioRealizado" required>
-                                <option value="tipoRadiografia">Radiografia</option>
-                                <option value="tipoRaioscopia">Radioscopia</option>
-                                <option value="tipoTomografia">Tomografia</option>
+                            <select class="form-select" id="tipoEstudioSelect" required>
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="tempEstudioRealizado" class="form-label">Estudio Realizado:</label>
-                            <select class="form-select" id="tempEstudioRealizado" name="tempEstudioRealizado" required>
+                            <select class="form-select" id="estudioSelect" required>
                                 <option value="">Seleccione...</option>
-                                <option value="esofagograma">Esofagograma</option>
-                                <option value="seriadaGastroduodenal">Seriada Gastroduodenal</option>
-                                <option value="colonPorEnema">Colon por Enema</option>
-                                <option value="urogramaExcretor">Urograma Excretor</option>
-                                <option value="cistouretrografiaMiccional">Cistouretrografía Miccional</option>
-                                <option value="histerosalpingografia">Histerosalpingografía</option>
-                                <option value="colangiografiaPerCutanea">Colangiografía Per-cutánea</option>
-                                <option value="dacriocistografia">Dacriocistografía</option>
                             </select>
                         </div>
 
@@ -114,5 +103,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../js/index.js"></script>
+    <script src="../js/estudios.js"></script>
 </body>
 </html>
